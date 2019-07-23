@@ -1,44 +1,45 @@
-﻿const Discord = require("discord.js");
-const client = new Discord.Client();
-var prefix = "!";
-
 client.on('ready', () => {
-	console.log('Dream iS Here');
+  console.log(`Welcome Bro ${client.user.tag}!`);
 });
+var prefix = '#'
 
-client.on('ready', () => {
-   console.log(`----------------`);
-      console.log(`b 1.0`);
-        console.log(`----------------`);
-      console.log(`ON ${client.guilds.size} Servers '     Script By : DREAM ' `);
-    console.log(`----------------`);
-  console.log(`Logged in as ${client.user.tag}!`);
-});
+client.on('message', message => {
+  if (!message.content.startsWith(prefix)) return;
+  var args = message.content.split(' ').slice(1);
+  var argresult = args.join(' ');
+  if (message.author.id !== "577595285593915395") return;
 
+  
+  if (message.content.startsWith(prefix + 'setwatch')) {
+  client.user.setActivity(argresult, {type: 'WATCHING'})
+     console.log('test' + argresult);
+    message.channel.sendMessage(`Watch Now: **${argresult}`)
+} 
 
-
-    const dreamv2 = ["477027008946372608"]
-    client.on('message', message => {
-        var dream = message.content.split(` `).slice(1).join(' ');
-          if (!dreamv2.includes(message.author.id)) return;
-          if(message.content.startsWith(prefix + "ply")){
-            client.user.setActivity(dream);
-            message.channel.send(`✔️ **Done Playing Now __${dream}__**`)
-        }
-          if (message.content.startsWith(prefix + 'wt')) {
-      client.user.setActivity(dream, {type:'WATCHING'});
-          message.channel.send(`✔️  **Done Watching Now __${dream}__ **`)
-      } else
-      if (message.content.startsWith(prefix + 'ls')) {
-      client.user.setActivity(dream , {type:'LISTENING'});
-          message.channel.send(`✔️ **Done Listening Now __${dream}__** `)
-      } else
-      if (message.content.startsWith(prefix + 'st')) {
-    client.user.setGame(dream, "https://www.twitch.tv/dream");
-         message.channel.send(`✔️ **Done Stream Now  __${dream}__ **`)
-      }
  
-    });
+  if (message.content.startsWith(prefix + 'setlis')) {
+  client.user.setActivity(argresult, {type: 'LISTENING'})
+     console.log('test' + argresult);
+    message.channel.sendMessage(`LISTENING Now: **${argresult}`)
+} 
 
 
-client.login(process.env.LIGHT);
+if (message.content.startsWith(prefix + 'setname')) {
+  client.user.setUsername(argresult).then
+      message.channel.sendMessage(`Username Changed To **${argresult}**`)
+  return message.reply("You Can change the username 2 times per hour");
+} 
+
+if (message.content.startsWith(prefix + 'setavatar')) {
+  client.user.setAvatar(argresult);
+   message.channel.sendMessage(`Avatar Changed Successfully To **${argresult}**`);
+}
+
+if (message.content.startsWith(prefix + 'setT')) {
+  client.user.setGame(argresult, "https://www.twitch.tv/peery13");
+     console.log('test' + argresult);
+    message.channel.sendMessage(`Streaming: **${argresult}`)
+} 
+if (message.content.startsWith(prefix + 'setgame')) {
+  client.user.setGame(argresult);
+     console.log('test' + argresult);
